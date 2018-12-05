@@ -35,12 +35,18 @@ const config = {
             },
             {
                 test: /\.less$/,
+                include: [
+                    path.join(__dirname, 'src'),
+                    path.join(__dirname, 'node_modules'),
+                ],
                 use: [{
                   loader: 'style-loader' // creates style nodes from JS strings
                 }, {
                   loader: 'css-loader' // translates CSS into CommonJS
                 }, {
-                  loader: 'less-loader', options: { javascriptEnabled: true } 
+                  loader: 'less-loader', options: {
+                    modifyVars: pkg.theme
+                  },
                 }]
               },
             {
