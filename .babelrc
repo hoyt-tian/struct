@@ -5,5 +5,8 @@
     "test": {
       "presets": [["env"], "react"]
     }
-  }
+  },
+  "plugins": [
+    ["import", { "libraryName": "antd-mobile", "style": true }]
+  ]
 }
