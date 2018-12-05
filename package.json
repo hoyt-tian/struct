@@ -11,9 +11,7 @@
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -37,7 +35,6 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "postcss-plugin-px2rem": "^0.8.0",
-    "raw-loader": "^0.5.1",
     "style-loader": "^0.23.0",
     "svg-url-loader": "^2.3.2",
     "webpack": "^4.19.1",
