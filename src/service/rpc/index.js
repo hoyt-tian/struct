@@ -30,7 +30,7 @@ export const rpc = ({
   url,
   data = {},
   headers = {},
-  method = 'GET',
+  method = 'GET', // GET, POST, PUT, DELETE, etc.
   resolve = rpcSuccess,
   reject =  rpcFail,
   ...rest
@@ -50,7 +50,7 @@ export const rpc = ({
       ...Headers,
       ...headers,
     },
-    method, // *GET, POST, PUT, DELETE, etc.
+    method,
     ...rest
   }).then(res => res.json(), reject).then(resolve, reject)
 }
