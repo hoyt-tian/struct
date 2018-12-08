@@ -14,13 +14,43 @@ export const rpcSuccess = (res) => {
   }
   return Promise.reject(errResponse(res))
 }
+
 export const rpcFail = (res) => Promise.reject(errResponse(res))
 
+const Headers = {
+  'content-type': 'application/json'
+}
+/**
+ * 
+ * @param {url}
+ * @param {data} 请求参数
+ * @param {method} 请求方式 
+ */
 export const rpc = ({
   url,
   data = {},
+  headers = {},
+  method = 'GET',
   resolve = rpcSuccess,
   reject =  rpcFail,
+  ...rest
 }) => {
-  return fetch(url, data).then(res => res.json(), reject).then(resolve, reject)
+  const isGet = /^get$/i.test(method)
+  let rpcUrl = url
+  if (isGet) {
+    const pairs = []
+    Object.keys(data).forEach(k => {
+      pairs.push(`${k}=${encodeURIComponent(data[k])}`)
+    })
+    rpcUrl = pairs.length ? `${url}?${pairs.join('&')}` : url
+  }
+  return fetch(rpcUrl, {
+    body: isGet ? null : JSON.stringify(data), // must match 'Content-Type' header
+    headers: {
+      ...Headers,
+      ...headers,
+    },
+    method, // *GET, POST, PUT, DELETE, etc.
+    ...rest
+  }).then(res => res.json(), reject).then(resolve, reject)
 }

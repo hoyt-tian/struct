@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "entry": {
-    "index": "./src/entry/home/index.js"
+    "index": "./src/entry/index/index.js",
+    "home": "./src/entry/home/index.js"
   },
   "directories": {
     "test": "test"
@@ -37,18 +38,33 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "postcss-plugin-px2rem": "^0.8.0",
+    "raw-loader": "^0.5.1",
     "style-loader": "^0.23.0",
     "svg-url-loader": "^2.3.2",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.2",
     "webpack": "^4.19.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8"
   },
   "scripts": {
-    "start": "NODE_ENV=production webpack-dev-server --hot --inline --content-base  ./dist",
-    "mock": "NODE_ENV=mock webpack-dev-server --hot --inline --content-base  ./dist",
+    "start": "tnpm run start:dev",
+    "start:dev": "tnpm run clean;NODE_ENV=development SOURCE_MAP=true webpack-dev-server --hot --inline --content-base  ./dist",
+    "start:mock": "tnpm run clean;NODE_ENV=development MOCK=true SOURCE_MAP=true webpack-dev-server --hot --inline --content-base  ./dist",
+    "start:production": "tnpm run clean;NODE_ENV=production MOCK=false SOURCE_MAP=false webpack-dev-server --hot --inline --content-base  ./dist",
+    "build": "tnpm run build:production",
+    "build:dev": "tnpm run clean;NODE_ENV=development SOURCE_MAP=true MOCK=false ./node_modules/.bin/webpack",
+    "build:mock": "tnpm run clean;NODE_ENV=development SOURCE_MAP=true MOCK=true ./node_modules/.bin/webpack",
+    "build:production": "tnpm run clean;NODE_ENV=production SOURCE_MAP=false MOCK=false ./node_modules/.bin/webpack",
+    "analyze": "tnpm run analyze:production",
+    "analyze:dev": "tnpm run clean; NODE_ENV=development ANALYZE=true ./node_modules/.bin/webpack",
+    "analyze:mock": "tnpm run clean; NODE_ENV=development ANALYZE=true MOCK=true ./node_modules/.bin/webpack",
+    "analyze:production": "tnpm run clean; NODE_ENV=production ANALYZE=true ./node_modules/.bin/webpack",
+
     "test": "./node_modules/.bin/jest",
-    "test:dev": "node --inspect-brk ./node_modules/.bin/jest --runInBand"
+    "test:dev": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
+    "clean": "rm ./dist/*"
   },
   "repository": {
     "type": "git",
