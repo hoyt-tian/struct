@@ -118,10 +118,11 @@ if (Setting.ANALYZE === 'true') {
 }
 
 Object.keys(pkg.entry).forEach((k) => {
-    config.entry[k] = pkg.entry[k]
+    const { main, title } = pkg.entry[k]
+    config.entry[k] = main
     config.plugins.push(new html({
         inject: true,
-        title: k,
+        title: title,
         env: Setting.NODE_ENV,
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
         template: 'src/template.ejs',

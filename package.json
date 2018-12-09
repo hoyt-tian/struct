@@ -3,8 +3,14 @@
   "version": "0.0.1",
   "description": "",
   "entry": {
-    "index": "./src/entry/index/index.js",
-    "home": "./src/entry/home/index.js"
+    "index": {
+      "main": "./src/entry/index/index.js",
+      "title": "首页"
+    },
+    "home": {
+      "main": "./src/entry/home/index.js",
+      "title": "主页"
+    }
   },
   "directories": {
     "test": "test"
