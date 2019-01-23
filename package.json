@@ -67,9 +67,9 @@
     "analyze:dev": "tnpm run clean; NODE_ENV=development ANALYZE=true ./node_modules/.bin/webpack",
     "analyze:mock": "tnpm run clean; NODE_ENV=development ANALYZE=true MOCK=true ./node_modules/.bin/webpack",
     "analyze:production": "tnpm run clean; NODE_ENV=production ANALYZE=true ./node_modules/.bin/webpack",
-
     "test": "./node_modules/.bin/jest",
     "test:dev": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
+    "test:update": "./node_modules/.bin/jest --updateSnapshot",
     "clean": "rm ./dist/*"
   },
   "repository": {
